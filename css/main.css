@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#card-container {
+    margin: 3em auto;
+    border-spacing: 0.7em;
+}
+
+.card-row {
+
+}
+
+.card {
+    width: 6em;
+    height: 6em;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-image: url("../img/card-back.jpg");
+    background-position: center;
+    background-size: contain;
+    box-shadow: 1px 1px 6px 1px black;
+    cursor: pointer;
+}
+
+.card:hover {
+    border: 2px solid blue;
+}
+
+.card:active {
+    opacity: 0.7;
+}
