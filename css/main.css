@@ -15,7 +15,7 @@
     border: 1px solid black;
     border-radius: 4px;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     box-shadow: 1px 1px 6px 1px black;
     cursor: pointer;
@@ -44,6 +44,7 @@ it has to be !important */
     border-radius: 4px;
     background-position: center;
     background-size: contain;
+    background-repeat: no-repeat;
     box-shadow: 1px 1px 6px 1px black;
     opacity: 0.5;
 }
