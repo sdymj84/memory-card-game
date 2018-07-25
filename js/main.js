@@ -97,7 +97,7 @@ function gameStart() {
         images[i] = images[j];
         images[j] = temp;
 
-        $(this).css("backgroundImage", "url('../img/" + images[i] + "')");
+        $(this).css("backgroundImage", "url('../img/1.png')");
     });
 }
 
