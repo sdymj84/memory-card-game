@@ -9,16 +9,11 @@
     border-spacing: 0.7em;
 }
 
-.card-row {
-
-}
-
 .card {
     width: 6em;
     height: 6em;
     border: 1px solid black;
     border-radius: 4px;
-    background-image: url("../img/card-back.jpg");
     background-position: center;
     background-size: contain;
     box-shadow: 1px 1px 6px 1px black;
@@ -31,4 +26,38 @@
 
 .card:active {
     opacity: 0.7;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.6); /* Black with a little bit see-through */
+}
+
+.overlay_message {
+    display: block;
+    width: 50%;
+    height: 15%;
+    margin: auto;
+    text-align: center;
+    margin-top: 30%;
+    font-size: 3em;
+}
+
+/* Added !important because background images of cards were dynamically set 
+by javascript .css() method and this will add inline css which specificity is 1000.
+so in order to overwrite inline css with card--closed background, 
+it has to be !important */
+.card--closed {
+    background-image: url("../img/card-back.jpg") !important;
+}
+
+.card--revealed {
+    border: 2px solid blue;
 }

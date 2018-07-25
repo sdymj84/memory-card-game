@@ -1,11 +1,80 @@
-for (let i=0 ; i<4 ; i++) {
+const n = 4;
+const imageCount = n*n/2;
+
+// Create card elements
+for (var i=0 ; i<n ; i++) {
     $("#card-container").append("<tr class='card-row'></tr>");
-    for (let j=0 ; j<4 ; j++) {
-        $(".card-row:last").append("<td class='card'></td>");
+    for (var j=0 ; j<n ; j++) {
+        $(".card-row:last").append("<td class='card'></td>");    
     }
 }
 
-$(".card").on("click", function() {
-    $(this).css("backgroundImage", "url('../img/rabit.png')");
-    $(this).attr("disabled", true);
+// Create image array
+var images = [];
+for (var i=0 ; i<n*n ; i++) {
+    if (i<imageCount) {
+        images.push(`${i}.png`);
+    } else {
+        images.push(`${i-imageCount}.png`);
+    }
+}
+
+// Shuffle the image array and assign them in elements
+$(".card").each(function(i, value) {
+    var j = Math.floor(Math.random() * (n*n - i)) + i;
+    var temp = images[i];
+    images[i] = images[j];
+    images[j] = temp;
+
+    $(this).css("backgroundImage", `url("../img/${images[i]}")`).addClass("card--closed");
 });
+
+// Click event listener on card
+var clickEvent = function() {
+    var cardOpened = $(this).removeClass("card--closed");
+    
+    // Action when card is opened
+    // 1. Check if currently opened card is one or two
+    var cardOpenedCount = $(".card").not(".card--closed, .card--revealed").length;
+    
+    // 2. If one : save "background image name" into "card1"
+    if (cardOpenedCount == 1) {
+        $(".card").bind("click", clickEvent);
+        card1 = $(this);
+    
+    // If two : block event when click > compare image with previously opened one
+    //        > if they are not the same, close both cards
+    //        > if they are the same, leave them opened and unbind event on those 2 cards
+    } else if (cardOpenedCount == 2) {
+        $(".card").unbind("click");
+        card2 = $(this);
+        
+        if (card1.css("background-image") != card2.css("background-image")) {
+            setTimeout(function() {
+                card1.addClass("card--closed");
+                card2.addClass("card--closed");
+                $(".card").bind("click", clickEvent);
+            }, 1000);
+        } else {
+            $(".card").bind("click", clickEvent);
+            card1.addClass("card--revealed").unbind();
+            card2.addClass("card--revealed").unbind();
+        }
+    } else if ($(".card--revealed").length == n*n) {
+        // When completed, create text "Completed!" and append it to overlay message
+        var message = "Completed!!";
+        $(".overlay_message").text(message);
+        $(".overlay").css("display", "block");
+    }
+};
+
+$(".card").bind("click", clickEvent);
+
+
+
+
+
+
+
+
+
