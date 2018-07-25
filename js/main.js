@@ -84,9 +84,9 @@ function gameStart() {
     var images = [];
     for (var i=0 ; i<n*n ; i++) {
         if (i<imageCount) {
-            images.push(`${i}.png`);
+            images.push(i + ".png");
         } else {
-            images.push(`${i-imageCount}.png`);
+            images.push(i-imageCount + ".png");
         }
     }
 
@@ -97,7 +97,7 @@ function gameStart() {
         images[i] = images[j];
         images[j] = temp;
 
-        $(this).css("backgroundImage", `url("../img/${images[i]}")`)
+        $(this).css("backgroundImage", "url('../img/" + images[i] + "')")
             .addClass("card--closed");
     });
 }
