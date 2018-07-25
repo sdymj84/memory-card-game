@@ -1,34 +1,22 @@
+/*=======================================================
+    Variables
+========================================================*/
 const n = 4;
 const imageCount = n*n/2;
 
-// Create card elements
-for (var i=0 ; i<n ; i++) {
-    $("#card-container").append("<tr class='card-row'></tr>");
-    for (var j=0 ; j<n ; j++) {
-        $(".card-row:last").append("<td class='card'></td>");    
-    }
-}
 
-// Create image array
-var images = [];
-for (var i=0 ; i<n*n ; i++) {
-    if (i<imageCount) {
-        images.push(`${i}.png`);
-    } else {
-        images.push(`${i-imageCount}.png`);
-    }
-}
 
-// Shuffle the image array and assign them in elements
-$(".card").each(function(i, value) {
-    var j = Math.floor(Math.random() * (n*n - i)) + i;
-    var temp = images[i];
-    images[i] = images[j];
-    images[j] = temp;
+/*=======================================================
+    Execute at load
+========================================================*/
+gameStart();
 
-    $(this).css("backgroundImage", `url("../img/${images[i]}")`).addClass("card--closed");
-});
 
+
+
+/*=======================================================
+    Events
+========================================================*/
 // Click event listener on card
 var clickEvent = function() {
     var cardOpened = $(this).removeClass("card--closed");
@@ -57,18 +45,73 @@ var clickEvent = function() {
             }, 1000);
         } else {
             $(".card").bind("click", clickEvent);
-            card1.addClass("card--revealed").unbind();
-            card2.addClass("card--revealed").unbind();
+            card1.addClass("card--revealed").removeClass("card").unbind();
+            card2.addClass("card--revealed").removeClass("card").unbind();
         }
     } else if ($(".card--revealed").length == n*n) {
         // When completed, create text "Completed!" and append it to overlay message
-        var message = "Completed!!";
-        $(".overlay_message").text(message);
-        $(".overlay").css("display", "block");
+        showMessage("Completed! Click to replay");
     }
 };
 
+$(".overlay button").on("click", function() {
+    $(".overlay").removeClass("overlay--show");
+    location.reload();
+});
+
+
 $(".card").bind("click", clickEvent);
+
+
+
+
+/*=======================================================
+    Functions
+========================================================*/
+function gameStart() {
+    // Clear the table first
+    $("#card-container").empty();
+
+    // Create card elements
+    for (var i=0 ; i<n ; i++) {
+        $("#card-container").append("<tr class='card-row'></tr>");
+        for (var j=0 ; j<n ; j++) {
+            $(".card-row:last").append("<td class='card'></td>");    
+        }
+    }
+
+    // Create image array
+    var images = [];
+    for (var i=0 ; i<n*n ; i++) {
+        if (i<imageCount) {
+            images.push(`${i}.png`);
+        } else {
+            images.push(`${i-imageCount}.png`);
+        }
+    }
+
+    // Shuffle the image array and assign them in elements
+    $(".card").each(function(i, value) {
+        var j = Math.floor(Math.random() * (n*n - i)) + i;
+        var temp = images[i];
+        images[i] = images[j];
+        images[j] = temp;
+
+        $(this).css("backgroundImage", `url("../img/${images[i]}")`)
+            .addClass("card--closed");
+    });
+}
+
+function showMessage(message) {
+    $(".overlay_message").text(message);
+    $(".overlay").addClass("overlay--show");
+}
+
+
+
+
+
+
 
 
 
