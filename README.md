@@ -16,6 +16,13 @@ March pairs from the card
 
 3. bind / unbind is useful to toggle events on certain elements
 
+4. Issue : card images are not showing when open cards.
+    Cause : main.js - $(this).css("backgroundImage", "url('../img/" + images[i] + "')")
+    => .css() will create inline css attributes on html file so relative url should be based on html file, not based on js file that the code is written.
+
+    Resolution : removed "../" from css url
+    
+
 ---
 
 - Lesson Notes : jQuery
