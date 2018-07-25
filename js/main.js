@@ -97,8 +97,7 @@ function gameStart() {
         images[i] = images[j];
         images[j] = temp;
 
-        $(this).css("backgroundImage", "url('../img/" + images[i] + "')")
-            .addClass("card--closed");
+        $(this).css("backgroundImage", "url('../img/" + images[i] + "')");
     });
 }
 
