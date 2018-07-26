@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-align: center;
 }
 
 #card-container {
@@ -71,13 +72,24 @@ it has to be !important */
 
 .overlay_message {
     display: block;
-    width: 50%;
-    height: 15%;
+    width: 80%;
     margin: auto;
     text-align: center;
-    margin-top: 30%;
+    margin-top: 7em;
     font-size: 200%;
-    border-radius: 10px;
+    color: white;
+    border: 0;
+    border-bottom: 2px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
+.overlay_message:hover {
+    color:darkgrey;
+}
 
+#runner {
+    font-size: 2em;
+    outline: 1px solid grey;
+    margin: 0 10%;
+}

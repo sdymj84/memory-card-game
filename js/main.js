@@ -3,6 +3,7 @@
 ========================================================*/
 const n = 4;
 const imageCount = n*n/2;
+let finishTime = 0;
 
 
 
@@ -10,7 +11,7 @@ const imageCount = n*n/2;
     Execute at load
 ========================================================*/
 gameStart();
-
+$("#runner").runner();
 
 
 /*=======================================================
@@ -49,18 +50,18 @@ var clickEvent = function() {
         }
     } else if ($(".card--revealed").length == n*n) {
         // When completed, create text "Completed!" and append it to overlay message
+        finishTime = $("#runner").runner("stop");
         showMessage("Completed! Click to replay");
     }
 };
 
-$(".overlay button").on("click", function() {
+$(".overlay_message").on("click", function() {
     $(".overlay").removeClass("overlay--show");
-    location.reload();
+    //location.reload();
+    $("#runner").runner("start");
 });
 
-
 $(".card").bind("click", clickEvent);
-
 
 
 
@@ -68,6 +69,8 @@ $(".card").bind("click", clickEvent);
     Functions
 ========================================================*/
 function gameStart() {
+    showMessage("PRESS TO START");
+
     // Clear the table first
     $("#card-container").empty();
 
