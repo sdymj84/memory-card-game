@@ -18,7 +18,7 @@ gameStart();
 ========================================================*/
 // Click event listener on card
 var clickEvent = function() {
-    var cardOpened = $(this).removeClass("card--closed");
+    var cardOpened = $(this).removeClass("card--closed").addClass("card--opened");
     
     // Action when card is opened
     // 1. Check if currently opened card is one or two
@@ -38,10 +38,10 @@ var clickEvent = function() {
         
         if (card1.css("background-image") != card2.css("background-image")) {
             setTimeout(function() {
-                card1.addClass("card--closed");
-                card2.addClass("card--closed");
+                card1.addClass("card--closed").removeClass("card--opened");
+                card2.addClass("card--closed").removeClass("card--opened");
                 $(".card").bind("click", clickEvent);
-            }, 1000);
+            }, 800);
         } else {
             $(".card").bind("click", clickEvent);
             card1.addClass("card--revealed").removeClass("card").unbind();

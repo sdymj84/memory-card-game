@@ -21,8 +21,12 @@
     cursor: pointer;
 }
 
+.card--opened {
+    background-size: contain;
+}
+
 .card:hover {
-    border: 2px solid blue;
+    outline: 2px solid blue;
 }
 
 .card:active {
