@@ -25,7 +25,18 @@ March pairs from the card
     => .css() will create inline css attributes on html file so relative url should be based on html file, not based on js file that the code is written.
 
     Resolution : removed "../" from css url
+
+5. on below statement, test1 doesn't work and test2 works because test1 function is declared as variable and variable can be used only after it's decalred.
     
+    $("sth").on("click", test1);
+    $("sth").on("click", test2);
+    
+    var test1 = function() {} 
+    function test2() {}
+
+    
+
+
 
 ---
 

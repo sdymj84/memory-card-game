@@ -93,3 +93,8 @@ it has to be !important */
     outline: 1px solid grey;
     margin: 0 10%;
 }
+
+#failed-count {
+    font-size: 2em;
+    margin: 1em;
+}

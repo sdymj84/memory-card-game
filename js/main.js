@@ -4,8 +4,7 @@
 const n = 4;
 const imageCount = n*n/2;
 let finishTime = 0;
-let isFirst = true;
-
+let fcCount = 0;
 
 
 /*=======================================================
@@ -13,6 +12,7 @@ let isFirst = true;
 ========================================================*/
 showMessage("PRESS TO START");
 $("#runner").runner();
+
 
 
 /*=======================================================
@@ -26,9 +26,6 @@ $(".overlay_message").on("click", startButtonEvent);
     Functions
 ========================================================*/
 function gameStart() {
-    // Clear the table first
-    $("#card-container").empty();
-
     // Create card elements
     for (var i=0 ; i<n ; i++) {
         $("#card-container").append("<tr class='card-row'></tr>");
@@ -58,7 +55,7 @@ function gameStart() {
             .addClass("card--closed");
     });
 
-    $(".card").bind("click", openCardEvent);
+    $(".card:not(.bound)").addClass("bound").bind("click", openCardEvent);
 }
 
 // Click event function on card
@@ -71,40 +68,47 @@ function openCardEvent() {
     
     // 2. If one : save "background image name" into "card1"
     if (cardOpenedCount == 1) {
-        $(".card").bind("click", openCardEvent);
+        $(".card:not(.bound)").addClass("bound").bind("click", openCardEvent);
         card1 = $(this);
     
     // If two : block event when click > compare image with previously opened one
     //        > if they are not the same, close both cards
     //        > if they are the same, leave them opened and unbind event on those 2 cards
     } else if (cardOpenedCount == 2) {
-        $(".card").unbind("click");
+        $(".card.bound").removeClass("bound").unbind("click");
         card2 = $(this);
         
         if (card1.css("background-image") != card2.css("background-image")) {
+            $("#fc_count").text(++fcCount);
             setTimeout(function() {
                 card1.addClass("card--closed").removeClass("card--opened");
                 card2.addClass("card--closed").removeClass("card--opened");
-                $(".card").bind("click", openCardEvent);
+                $(".card:not(.bound)").addClass("bound").bind("click", openCardEvent);
             }, 800);
         } else {
-            $(".card").bind("click", openCardEvent);
+            $(".card:not(.bound)").addClass("bound").bind("click", openCardEvent);
             card1.addClass("card--revealed").removeClass("card").unbind();
             card2.addClass("card--revealed").removeClass("card").unbind();
+
+            if ($(".card--revealed").length == 2) {
+                // When completed, create text "Completed!" and append it to overlay message
+                finishTime = $("#runner").runner("stop");
+                showMessage("Completed! Click to replay");
+            }
         }
-    } else if ($(".card--revealed").length == n*n) {
-        // When completed, create text "Completed!" and append it to overlay message
-        finishTime = $("#runner").runner("stop");
-        showMessage("Completed! Click to replay");
-        isFirst = false;
     }
 }
 
 function startButtonEvent() {
+    fcCount = 0;
     $(".overlay").removeClass("overlay--show");
+    // Clear the table first
+    $("#card-container").empty();
+
     gameStart();
     $("#runner").runner("reset");
     $("#runner").runner("start");
+    $("#fc_count").text(fcCount);
 }
 
 function showMessage(message) {
