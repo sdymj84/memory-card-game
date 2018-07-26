@@ -7,7 +7,7 @@
 --- 
 
 ## Version 1.1
-    Added stopwatch and failed count
+    Added stopwatch and failed counts
 
 ## Version 1.0
     Basic memory game. no additional feature
