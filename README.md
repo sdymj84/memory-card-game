@@ -4,6 +4,9 @@ March pairs from the card
 - Language : HTML, CSS, Javascript
 - Framework : jQuery
 
+* Version 1.1
+    Added stopwatch and failed count
+
 * Version 1.0
     Basic memory game. no additional feature
     You can replay after complete
