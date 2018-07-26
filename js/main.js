@@ -90,10 +90,10 @@ function openCardEvent() {
             card1.addClass("card--revealed").removeClass("card").unbind();
             card2.addClass("card--revealed").removeClass("card").unbind();
 
-            if ($(".card--revealed").length == n*n) {
+            if ($(".card--revealed").length == 2) {
                 // When completed, create text "Completed!" and append it to overlay message
                 finishTime = $("#runner").runner("stop");
-                showMessage("Completed! Click to replay");
+                showMessage("Completed!<br>Click to replay");
             }
         }
     }
@@ -112,7 +112,7 @@ function startButtonEvent() {
 }
 
 function showMessage(message) {
-    $(".overlay_message").text(message);
+    $(".overlay_message").html(message);
     $(".overlay").addClass("overlay--show");
 }
 
