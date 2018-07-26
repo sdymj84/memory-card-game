@@ -90,7 +90,7 @@ function openCardEvent() {
             card1.addClass("card--revealed").removeClass("card").unbind();
             card2.addClass("card--revealed").removeClass("card").unbind();
 
-            if ($(".card--revealed").length == 2) {
+            if ($(".card--revealed").length == n*n) {
                 // When completed, create text "Completed!" and append it to overlay message
                 finishTime = $("#runner").runner("stop");
                 showMessage("Completed! Click to replay");
