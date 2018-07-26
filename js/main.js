@@ -10,7 +10,6 @@ const imageCount = n*n/2;
     Execute at load
 ========================================================*/
 gameStart();
-showMessage("Completed! Click to replay!");
 
 
 
