@@ -1,7 +1,7 @@
 /*=======================================================
     Variables
 ========================================================*/
-const n = 4;
+let n = 4;
 const imageCount = n*n/2;
 let finishTime = 0;
 let fcCount = 0;
@@ -101,6 +101,7 @@ function openCardEvent() {
 
 function startButtonEvent() {
     fcCount = 0;
+    n = $(".dropdown").val();
     $(".overlay").removeClass("overlay--show");
     // Clear the table first
     $("#card-container").empty();
