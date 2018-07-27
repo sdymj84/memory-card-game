@@ -39,7 +39,7 @@
     var test1 = function() {} 
     function test2() {}
 
-    
+
 
 
 
@@ -90,3 +90,6 @@
 
 7. ### useful code
     $element.attr("disabled", true).addClass("disabled");   // when there's css class called "disabled"
+
+8. ### How to maintain aspect ratio of responsive div
+    use "padding-top" - padding top is calculated based on width. so as width chagnes, height is set dynamically (height equal to padding-top when height is not specifically decalred)
