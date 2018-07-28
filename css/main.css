@@ -54,9 +54,8 @@ it has to be !important */
 }
 
 .card--revealed {
-    border: 2px solid blue;
+    border: 1px solid blue;
     width: 6em;
-    height: 6em;
     border-radius: 4px;
     background-position: center;
     background-size: contain;
@@ -85,6 +84,8 @@ it has to be !important */
     font-size: 2em;
     margin-top: 2em;
     width: 7em;
+    border-radius: 5px;
+    padding: 5px 5px 5px 10px;
 }
 
 .overlay_message {
@@ -100,6 +101,7 @@ it has to be !important */
     font-weight: bold;
     cursor: pointer;
     font-family: 'Bungee Shade', cursive;
+    line-height: 1.5;
 }
 
 .overlay_message:hover {
