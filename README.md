@@ -36,10 +36,10 @@
 
 5. on below statement, test1 doesn't work and test2 works because test1 function is declared as variable and variable can be used only after it's decalred.
     
-    $("sth").on("click", test1);
+    $("sth").on("click", test1);<br>
     $("sth").on("click", test2);
     
-    var test1 = function() {} 
+    var test1 = function() {} <br>
     function test2() {}
 
 
