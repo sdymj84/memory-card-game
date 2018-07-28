@@ -43,9 +43,6 @@
     function test2() {}
 
 
-
-
-
 ---
 
 ## Lesson Notes : jQuery
