@@ -1,8 +1,8 @@
 /*=======================================================
     Variables
 ========================================================*/
-const n = 4;
-const imageCount = n*n/2;
+let n;
+let imageCount;
 let finishTime = 0;
 let fcCount = 0;
 
@@ -52,7 +52,8 @@ function gameStart() {
         images[j] = temp;
 
         $(this).css("backgroundImage", "url('img/" + images[i] + "')")
-            .addClass("card--closed");
+            .addClass("card--closed")
+            .addClass(`card--${n}`);
     });
 
     $(".card:not(.bound)").addClass("bound").bind("click", openCardEvent);
@@ -101,6 +102,9 @@ function openCardEvent() {
 
 function startButtonEvent() {
     fcCount = 0;
+    n = Number($(".dropdown").val());
+    imageCount = n*n/2
+    
     $(".overlay").removeClass("overlay--show");
     // Clear the table first
     $("#card-container").empty();
