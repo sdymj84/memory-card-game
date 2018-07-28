@@ -1,4 +1,5 @@
-# memory-card-game
+# memory-card-game : [Click to play the game](https://sdymj84.github.io/memory-card-game/)
+
 ## Match pairs from the card
 - 3rd practice project
 - Language : HTML, CSS, Javascript
