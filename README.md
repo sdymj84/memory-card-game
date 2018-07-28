@@ -5,6 +5,9 @@
 - Framework : jQuery
 
 --- 
+## Version 1.2
+    Able to select table size 4x4 / 6x6 / 8x8
+    Caution! : 8x8 is extremely difficult
 
 ## Version 1.1
     Added stopwatch and failed counts
